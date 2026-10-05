@@ -1,0 +1,7 @@
+{% extends "base.html" %}{% block content %}
+<section class="hero"><div><span class="eyebrow">ОНЛАЙН-ПЛАТФОРМА</span><h1>Латинский язык — тестирование</h1><p>Проходите тесты по темам, получайте результат и сохраняйте историю попыток.</p>{% if not me %}<a class="btn" href="/register">Начать тестирование</a>{% else %}<h3>Добро пожаловать, {{me.name}}!</h3>{% endif %}</div><div class="hero-card"><b>Платформа</b><span>166+ вопросов</span><span>Результаты сохраняются</span><span>Панель преподавателя</span></div></section>
+{% if me %}<section class="card"><h2>Темы</h2><div class="grid">{% for q in [] %}{% endfor %}{% set topics=[] %}{% for q in [] %}{% endfor %}{% for t in topics %}{% endfor %}
+<p>Выберите тест из списка ниже.</p><div id="topics" class="grid"></div></section><script>
+fetch('/api/topics').then(r=>r.json()).then(ts=>document.getElementById('topics').innerHTML=ts.map(t=>`<a class="topic" href="/test/${encodeURIComponent(t)}">${t}</a>`).join(''));
+</script>{% else %}<section class="card"><h2>Для студентов</h2><p>Регистрация занимает меньше минуты. Результаты будут доступны в личном кабинете.</p></section>{% endif %}
+{% endblock %}
